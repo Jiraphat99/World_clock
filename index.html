@@ -7,62 +7,102 @@
     <title>World Clock</title>
   </head>
   <body>
-    <!-- ===== Navigation Bar ===== -->
+    <!-- Navbar -->
     <nav class="navbar">
       <h1 class="logo">World Clock</h1>
       <div class="nav-buttons">
         <button class="nav-btn" id="settings-btn">⚙️ Settings</button>
-        <button class="nav-btn" id="add-city-btn">➕ Add City</button>
+        <button class="nav-btn" id="add-city-btn">➕ Add Location</button>
       </div>
     </nav>
 
-    <!-- ===== Main Clock Display ===== -->
-    <div class="world-clock">
-      <div class="city-card">
-        <div class="overlay"></div>
-        <div class="content">
-          <h2>New York</h2>
-          <p class="country">United States</p>
-          <div class="time">11:31</div>
-          <p class="utc">UTC -5:00</p>
-          <p class="temp">31°C</p>
+    <!-- Carousel Wrapper -->
+    <div class="carousel">
+      <button class="arrow left" id="prev-btn">❮</button>
+
+      <div class="carousel-track">
+        <!-- Example cards -->
+        <div
+          class="city-card"
+          style="background-image: url('images/newyork.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>New York</h2>
+            <p class="country">United States</p>
+            <div class="time">11:31</div>
+            <p class="utc">UTC -5:00</p>
+            <p class="temp">31°C</p>
+          </div>
+        </div>
+
+        <div
+          class="city-card"
+          style="background-image: url('images/london.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>London</h2>
+            <p class="country">United Kingdom</p>
+            <div class="time">16:31</div>
+            <p class="utc">UTC +0:00</p>
+            <p class="temp">10°C</p>
+          </div>
+        </div>
+
+        <div
+          class="city-card"
+          style="background-image: url('images/tokyo.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>Tokyo</h2>
+            <p class="country">Japan</p>
+            <div class="time">01:31</div>
+            <p class="utc">UTC +9:00</p>
+            <p class="temp">15°C</p>
+          </div>
+        </div>
+
+        <div
+          class="city-card"
+          style="background-image: url('images/sydney.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>Sydney</h2>
+            <p class="country">Australia</p>
+            <div class="time">03:31</div>
+            <p class="utc">UTC +10:00</p>
+            <p class="temp">20°C</p>
+          </div>
+        </div>
+
+        <div class="city-card" style="background-image: url('images/rio.jpg')">
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>Rio de Janeiro</h2>
+            <p class="country">Brazil</p>
+            <div class="time">13:31</div>
+            <p class="utc">UTC -3:00</p>
+            <p class="temp">25°C</p>
+          </div>
+        </div>
+
+        <div class="city-card" style="background-image: url('images/rome.jpg')">
+          <div class="overlay"></div>
+          <div class="content">
+            <h2>Rome</h2>
+            <p class="country">Italy</p>
+            <div class="time">17:31</div>
+            <p class="utc">UTC +1:00</p>
+            <p class="temp">12°C</p>
+          </div>
         </div>
       </div>
 
-      <div class="city-card">
-        <div class="overlay"></div>
-        <div class="content">
-          <h2>Punta Cana</h2>
-          <p class="country">Dominican Republic</p>
-          <div class="time">12:31</div>
-          <p class="utc">UTC -4:00</p>
-          <p class="temp">27°C</p>
-        </div>
-      </div>
-
-      <div class="city-card">
-        <div class="overlay"></div>
-        <div class="content">
-          <h2>Rio de Janeiro</h2>
-          <p class="country">Brazil</p>
-          <div class="time">13:31</div>
-          <p class="utc">UTC -3:00</p>
-          <p class="temp">25°C</p>
-        </div>
-      </div>
+      <button class="arrow right" id="next-btn">❯</button>
     </div>
-
-    <!-- ===== Footer ===== -->
-    <footer>
-      Coded with ❤️ by <strong>Jirapat Wonganan</strong> •
-      <a
-        href="https://github.com/Jiraphat99/World_clock"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View Source on GitHub
-      </a>
-    </footer>
 
     <script src="index.js"></script>
   </body>
