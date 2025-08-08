@@ -7,13 +7,63 @@
     <title>World Clock</title>
   </head>
   <body>
-    <h1>World Clock</h1>
+    <!-- ===== Navigation Bar ===== -->
+    <nav class="navbar">
+      <h1 class="logo">World Clock</h1>
+      <div class="nav-buttons">
+        <button class="nav-btn" id="settings-btn">⚙️ Settings</button>
+        <button class="nav-btn" id="add-city-btn">➕ Add City</button>
+      </div>
+    </nav>
+
+    <!-- ===== Main Clock Display ===== -->
+    <div class="world-clock">
+      <div class="city-card">
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>New York</h2>
+          <p class="country">United States</p>
+          <div class="time">11:31</div>
+          <p class="utc">UTC -5:00</p>
+          <p class="temp">31°C</p>
+        </div>
+      </div>
+
+      <div class="city-card">
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>Punta Cana</h2>
+          <p class="country">Dominican Republic</p>
+          <div class="time">12:31</div>
+          <p class="utc">UTC -4:00</p>
+          <p class="temp">27°C</p>
+        </div>
+      </div>
+
+      <div class="city-card">
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>Rio de Janeiro</h2>
+          <p class="country">Brazil</p>
+          <div class="time">13:31</div>
+          <p class="utc">UTC -3:00</p>
+          <p class="temp">25°C</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
     <footer>
-      This project was coded by Jirapat Wonganan and is
-      <a href="https://github.com/Jiraphat99/World_clock" target="_blank"
-        >open sourced on GitHub.</a
+      Coded with ❤️ by <strong>Jirapat Wonganan</strong> •
+      <a
+        href="https://github.com/Jiraphat99/World_clock"
+        target="_blank"
+        rel="noopener noreferrer"
       >
+        View Source on GitHub
+      </a>
     </footer>
+
+    <script src="index.js"></script>
   </body>
-  <script src="index.js"></script>
 </html>
