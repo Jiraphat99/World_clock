@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    sans-serif;
+  background: linear-gradient(180deg, #111 0%, #1c1c1e 100%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -13,8 +14,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.85);
-  padding: 10px 20px;
+  padding: 14px 24px;
+  backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(30, 30, 30, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .nav-buttons {
@@ -22,13 +31,34 @@ body {
   gap: 10px;
 }
 
-.nav-btn {
-  background: rgba(255, 255, 255, 0.15);
+.nav-btn,
+#city-select,
+#add-selected-btn {
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 10px;
   color: white;
+  font-size: 0.9rem;
   cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover,
+#add-selected-btn:hover,
+#city-select:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Select styling */
+#city-select {
+  appearance: none;
+  padding: 8px 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='12' viewBox='0 0 20 20'><path d='M5.516 7.548l4.484 4.482 4.484-4.482L16 8.548 10 14.548 4 8.548z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
 }
 
 /* Carousel Layout */
@@ -53,12 +83,24 @@ body {
   position: relative;
   display: flex;
   align-items: flex-end;
+  transition: transform 0.5s ease-in-out;
+}
+
+.city-card:hover {
+  transform: scale(1.03);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+  transition: background 2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s; /* add delay */
+  will-change: background;
+}
+
+.city-card:hover .overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
 }
 
 .content {
