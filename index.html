@@ -14,95 +14,69 @@
       <h1 class="logo">World Clock</h1>
       <div class="nav-buttons">
         <button class="nav-btn" id="settings-btn">⚙️ Settings</button>
-        <button class="nav-btn" id="add-city-btn">➕ Add Location</button>
+        <select id="city-select">
+          <option value="">-- Select a city --</option>
+          <option value="America/New_York|United States|images/newyork.jpg">
+            New York
+          </option>
+          <option value="Europe/London|United Kingdom|images/london.jpg">
+            London
+          </option>
+          <option value="Asia/Tokyo|Japan|images/tokyo.jpg">Tokyo</option>
+          <option value="Australia/Sydney|Australia|images/sydney.jpg">
+            Sydney
+          </option>
+          <option value="America/Sao_Paulo|Brazil|images/rio.jpg">
+            Rio de Janeiro
+          </option>
+          <option value="Europe/Rome|Italy|images/rome.jpg">Rome</option>
+          <option value="Asia/Bangkok|Thailand|images/bangkok.jpg">
+            Bangkok
+          </option>
+
+          <!-- More cities below -->
+          <option value="Europe/Paris|France|images/paris.jpg">Paris</option>
+          <option value="Asia/Shanghai|China|images/shanghai.jpg">
+            Shanghai
+          </option>
+          <option
+            value="America/Los_Angeles|United States|images/losangeles.jpg"
+          >
+            Los Angeles
+          </option>
+          <option
+            value="Africa/Johannesburg|South Africa|images/johannesburg.jpg"
+          >
+            Johannesburg
+          </option>
+          <option value="Europe/Moscow|Russia|images/moscow.jpg">Moscow</option>
+          <option value="Asia/Dubai|United Arab Emirates|images/dubai.jpg">
+            Dubai
+          </option>
+          <option value="America/Mexico_City|Mexico|images/mexicocity.jpg">
+            Mexico City
+          </option>
+          <option value="Europe/Berlin|Germany|images/berlin.jpg">
+            Berlin
+          </option>
+          <option value="Asia/Seoul|South Korea|images/seoul.jpg">Seoul</option>
+          <option value="America/Toronto|Canada|images/toronto.jpg">
+            Toronto
+          </option>
+          <option value="Asia/Kolkata|India|images/kolkata.jpg">Kolkata</option>
+          <option value="Europe/Istanbul|Turkey|images/istanbul.jpg">
+            Istanbul
+          </option>
+        </select>
+
+        <button id="add-selected-btn">Add Selected City</button>
       </div>
     </nav>
 
     <!-- Carousel Wrapper -->
     <div class="carousel">
       <button class="arrow left" id="prev-btn">❮</button>
-
-      <div class="carousel-track">
-        <!-- Example cards -->
-        <div
-          class="city-card"
-          style="background-image: url('images/newyork.jpg')"
-        >
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>New York</h2>
-            <p class="country">United States</p>
-            <div class="time">11:31</div>
-            <p class="utc">UTC -5:00</p>
-            <p class="temp">31°C</p>
-          </div>
-        </div>
-
-        <div
-          class="city-card"
-          style="background-image: url('images/london.jpg')"
-        >
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>London</h2>
-            <p class="country">United Kingdom</p>
-            <div class="time">16:31</div>
-            <p class="utc">UTC +0:00</p>
-            <p class="temp">10°C</p>
-          </div>
-        </div>
-
-        <div
-          class="city-card"
-          style="background-image: url('images/tokyo.jpg')"
-        >
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>Tokyo</h2>
-            <p class="country">Japan</p>
-            <div class="time">01:31</div>
-            <p class="utc">UTC +9:00</p>
-            <p class="temp">15°C</p>
-          </div>
-        </div>
-
-        <div
-          class="city-card"
-          style="background-image: url('images/sydney.jpg')"
-        >
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>Sydney</h2>
-            <p class="country">Australia</p>
-            <div class="time">03:31</div>
-            <p class="utc">UTC +10:00</p>
-            <p class="temp">20°C</p>
-          </div>
-        </div>
-
-        <div class="city-card" style="background-image: url('images/rio.jpg')">
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>Rio de Janeiro</h2>
-            <p class="country">Brazil</p>
-            <div class="time">13:31</div>
-            <p class="utc">UTC -3:00</p>
-            <p class="temp">25°C</p>
-          </div>
-        </div>
-
-        <div class="city-card" style="background-image: url('images/rome.jpg')">
-          <div class="overlay"></div>
-          <div class="content">
-            <h2>Rome</h2>
-            <p class="country">Italy</p>
-            <div class="time">17:31</div>
-            <p class="utc">UTC +1:00</p>
-            <p class="temp">12°C</p>
-          </div>
-        </div>
-      </div>
-
+      <div class="carousel-track"></div>
       <button class="arrow right" id="next-btn">❯</button>
     </div>
 
