@@ -45,6 +45,10 @@ body {
   transition: all 0.25s ease;
 }
 
+#city-select option {
+  color: black;
+}
+
 .nav-btn:hover,
 #add-selected-btn:hover,
 #city-select:hover {
@@ -154,7 +158,14 @@ body {
 
 /* Footer */
 footer {
-  background: rgba(0, 0, 0, 0.85);
-  padding: 12px;
+  backdrop-filter: blur(10px);
+  background: rgba(30, 30, 30, 0.6);
+  padding: 14px;
   text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer a {
+  color: white;
 }
