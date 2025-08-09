@@ -129,7 +129,7 @@ function createCityCard(city) {
   const card = document.createElement("div");
   card.classList.add("city-card");
   card.style.backgroundImage = `url('${city.img}')`;
-  card.dataset.timezone = city.timezone; // store timezone here
+  card.dataset.timezone = city.timezone; // store timezone
   card.innerHTML = `
     <div class="overlay"></div>
     <div class="content">
@@ -146,7 +146,7 @@ function createCityCard(city) {
 function populateSelect() {
   // Add Current Location as the first option
   const currentLocOption = document.createElement("option");
-  currentLocOption.value = "current|Local|images/currentlocation.jpg"; // placeholder image or icon
+  currentLocOption.value = "current|Local|images/currentlocation.jpg";
   currentLocOption.textContent = "Current Location";
   select.appendChild(currentLocOption);
 
@@ -218,7 +218,7 @@ function saveCitiesToStorage() {
     const name = card.querySelector("h2").textContent;
     const country = card.querySelector(".country").textContent;
     const timezone = card.dataset.timezone;
-    const img = card.style.backgroundImage.slice(5, -2); // remove url(' and ')
+    const img = card.style.backgroundImage.slice(5, -2);
     saved.push({ name, country, timezone, img });
   });
   localStorage.setItem("addedCities", JSON.stringify(saved));
@@ -234,7 +234,7 @@ function loadCitiesFromStorage() {
     ) {
       city.timezone = moment.tz.guess();
       city.name = city.timezone.split("/")[1].replace("_", " ");
-      city.img = "images/currentlocation.jpg"; // your current location image
+      city.img = "images/currentlocation.jpg";
     }
     addCityCard(city);
   });
