@@ -113,6 +113,12 @@ const cities = [
     timezone: "Europe/Istanbul",
     img: "images/istanbul.jpg",
   },
+  {
+    name: "Amsterdam",
+    country: "Netherlands",
+    timezone: "Europe/Amsterdam",
+    img: "images/amsterdam.jpg",
+  },
 ];
 
 const select = document.getElementById("city-select");
@@ -123,13 +129,14 @@ function createCityCard(city) {
   const card = document.createElement("div");
   card.classList.add("city-card");
   card.style.backgroundImage = `url('${city.img}')`;
+  card.dataset.timezone = city.timezone; // store timezone here
   card.innerHTML = `
     <div class="overlay"></div>
     <div class="content">
       <h2>${city.name}</h2>
       <p class="country">${city.country}</p>
       <div class="time">--:--:--</div>
-      <p class="utc">UTC ${moment().tz(city.timezone).format("Z")}</p>
+      <p class="utc">UTC --</p>
       <p class="temp">--°C</p>
     </div>
   `;
@@ -137,6 +144,12 @@ function createCityCard(city) {
 }
 
 function populateSelect() {
+  // Add Current Location as the first option
+  const currentLocOption = document.createElement("option");
+  currentLocOption.value = "current|Local|images/currentlocation.jpg"; // placeholder image or icon
+  currentLocOption.textContent = "Current Location";
+  select.appendChild(currentLocOption);
+
   cities.forEach((city) => {
     const option = document.createElement("option");
     option.value = `${city.timezone}|${city.country}|${city.img}`;
@@ -165,15 +178,14 @@ function addCityCard(city) {
 function updateTimes() {
   const cards = document.querySelectorAll(".city-card");
   cards.forEach((card) => {
-    const cityName = card.querySelector("h2").textContent;
-    const city = cities.find(
-      (c) => c.name.toLowerCase() === cityName.toLowerCase()
-    );
-    if (!city) return;
+    const timezone = card.dataset.timezone;
+    if (!timezone) return;
+
     const timeElement = card.querySelector(".time");
-    timeElement.textContent = moment().tz(city.timezone).format("HH:mm:ss");
     const utcElement = card.querySelector(".utc");
-    utcElement.textContent = "UTC " + moment().tz(city.timezone).format("Z");
+
+    timeElement.textContent = moment().tz(timezone).format("HH:mm:ss");
+    utcElement.textContent = "UTC " + moment().tz(timezone).format("Z");
   });
 }
 
@@ -183,11 +195,6 @@ function updateCarousel() {
   const cardWidth = cards[0].offsetWidth;
   track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 }
-
-// Populate select and initial cards on page load
-populateSelect();
-setInterval(updateTimes, 1000);
-updateTimes();
 
 document.getElementById("next-btn").addEventListener("click", () => {
   const cards = document.querySelectorAll(".city-card");
@@ -209,17 +216,28 @@ function saveCitiesToStorage() {
   const saved = [];
   cards.forEach((card) => {
     const name = card.querySelector("h2").textContent;
-    const city = cities.find(
-      (c) => c.name.toLowerCase() === name.toLowerCase()
-    );
-    if (city) saved.push(city);
+    const country = card.querySelector(".country").textContent;
+    const timezone = card.dataset.timezone;
+    const img = card.style.backgroundImage.slice(5, -2); // remove url(' and ')
+    saved.push({ name, country, timezone, img });
   });
   localStorage.setItem("addedCities", JSON.stringify(saved));
 }
 
 function loadCitiesFromStorage() {
   const stored = JSON.parse(localStorage.getItem("addedCities")) || [];
-  stored.forEach((city) => addCityCard(city));
+  stored.forEach((city) => {
+    // Override 'current' or maybe even if city.name is "Current Location"
+    if (
+      city.timezone === "current" ||
+      city.name.toLowerCase().includes("current location")
+    ) {
+      city.timezone = moment.tz.guess();
+      city.name = city.timezone.split("/")[1].replace("_", " ");
+      city.img = "images/currentlocation.jpg"; // your current location image
+    }
+    addCityCard(city);
+  });
 }
 
 // When user clicks "Add Selected City"
@@ -227,10 +245,39 @@ document.getElementById("add-selected-btn").addEventListener("click", () => {
   const value = select.value;
   if (!value) return;
 
-  const [timezone, country, img] = value.split("|");
-  const cityName = timezone.split("/")[1].replace("_", " ");
+  let [timezone, country, img] = value.split("|");
+  let cityName = "";
 
-  const city = { name: cityName, country, timezone, img };
+  if (timezone === "current") {
+    // Get browser's current timezone
+    const currentTz = moment.tz.guess();
+
+    // Try to find city info matching the timezone
+    const matchedCity = cities.find((c) => c.timezone === currentTz);
+
+    if (matchedCity) {
+      timezone = matchedCity.timezone;
+      cityName = matchedCity.name;
+      country = matchedCity.country;
+      img = matchedCity.img;
+    } else {
+      // Fallback if not found
+      timezone = currentTz;
+      cityName = currentTz.split("/")[1].replace("_", " ");
+      country = "Local";
+      img = "images/currentlocation.jpg";
+    }
+  } else {
+    cityName = timezone.split("/")[1].replace("_", " ");
+  }
+
+  const city = {
+    name: cityName,
+    country: country,
+    timezone: timezone,
+    img: img,
+  };
+
   if (addCityCard(city)) {
     saveCitiesToStorage();
     currentIndex = document.querySelectorAll(".city-card").length - 1;
